@@ -26,7 +26,7 @@ class QueryBox extends React.Component {
 
   createUrl() {
     var baseUrl = "http://localhost:8090/instacart";
-    baseUrl = "https://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
+    baseUrl = "http://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
     var endPoint = "/exec";
 
     var sqlQuery = document.getElementById("query-box").value;
