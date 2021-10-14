@@ -19,14 +19,14 @@ class QueryBox extends React.Component {
     super(props);
     this.state = {
       data: null,
-      timeTaken: null,
-      rowsAffected: null
+      statKey: "Time Taken: ",
+      statValue: null
     };
   }
 
   createUrl() {
     var baseUrl = "http://localhost:8090/instacart";
-    baseUrl = "http://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
+    //baseUrl = "http://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
     var endPoint = "/exec";
 
     var sqlQuery = document.getElementById("query-box").value;
@@ -74,7 +74,7 @@ class QueryBox extends React.Component {
           console.log(res);
           if(res.request.status < 300) {
             console.log("Success");
-            this.setState({data: true, error: false, object: res.data, timeTaken: res.data.timeTaken});
+            this.setState({data: true, error: false, object: res.data, statKey: "Time Taken: ", statValue: res.data.timeTaken + " ms"});
           }
           else {
             console.log("Failed");
@@ -94,7 +94,7 @@ class QueryBox extends React.Component {
           console.log(res);
           if(res.request.status < 300) {
             console.log("Success");
-            this.setState({data: "Success", error: false, object: null, rowsAffected: res.data});
+            this.setState({data: "Success", error: false, object: null, statKey: "Rows affected: ", statValue: res.data});
           }
           else {
             console.log("Failed");
@@ -162,7 +162,7 @@ class QueryBox extends React.Component {
                   <tr>
                     <td><input className="submit" type="button" value="Fire" onClick={() => {this.handleSubmit();}}></input></td>
                     <td><input className="reset" type="reset" value="Clear" onClick={() => {this.handleReset();}}></input></td>
-                    <td>Time elapsed: </td>
+                    <td>{this.state.statKey} {this.state.statValue}</td>
                   </tr>
                 </tbody>
               </table>
