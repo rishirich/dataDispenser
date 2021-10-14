@@ -26,7 +26,7 @@ class QueryBox extends React.Component {
 
   createUrl() {
     var baseUrl = "http://localhost:8090/instacart";
-    baseUrl = "http://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
+    baseUrl = "https://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
     var endPoint = "/exec";
 
     var sqlQuery = document.getElementById("query-box").value;
@@ -41,8 +41,16 @@ class QueryBox extends React.Component {
 
     var databaseChoices = document.getElementsByName("database");
     var database = "MySql";
-    if(databaseChoices[1].checked)
-      database = "Redshift";
+    if(!databaseChoices[0].checked && !databaseChoices[1].checked) {
+      throw new Error("Select a datasource.");
+    }
+    else {
+      if(databaseChoices[1].checked)
+        database = "Redshift";
+      else
+        database = "MySql";
+    }
+
 
     endPoint += database;
     endPoint += "Query";
@@ -109,11 +117,15 @@ class QueryBox extends React.Component {
   handleSubmit(event) {
     let headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
+    try {
+      if(this.requestType() === "get")
+        this.submitGetRequest(this.createUrl().toString());
+      else
+        this.submitPostRequest(this.createUrl().toString());
+    } catch (e) {
+      alert(e.message);
+    }
 
-    if(this.requestType() === "get")
-      this.submitGetRequest(this.createUrl().toString());
-    else
-      this.submitPostRequest(this.createUrl().toString());
 
   }
 
