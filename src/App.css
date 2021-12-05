@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: aliceblue;
 }
 
 .App-logo {
@@ -14,26 +15,15 @@
   font-size: 18px;
 }
 
-/*.query-div {
-  position: absolute;
-  top: 30px;
-  left:33%;
-  margin-left:auto;
-  margin-right:auto;
-  height:auto;
-  width:auto;
-  float:left;
+.query-div {
+  background:aliceblue;
+  padding: 20px;
 }
 
 .table-div {
-  position: relative;
-  top: 300px;
-  margin-left:auto;
-  margin-right:auto;
-  height:auto;
-  width:auto;
-  float:left;
-}*/
+  background:aliceblue;
+  padding: 20px;
+}
 
 .submit, .reset {
   width: 150px !important;
@@ -52,7 +42,7 @@
 }
 
 .App-header {
-  background-color: #ffffff;
+  background:aliceblue;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -79,6 +69,8 @@
 .data-table {
   border: 1px solid black;
   border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 

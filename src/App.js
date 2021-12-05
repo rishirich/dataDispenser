@@ -26,7 +26,7 @@ class QueryBox extends React.Component {
 
   createUrl() {
     var baseUrl = "http://localhost:8090/instacart";
-    baseUrl = "http://ec2-3-145-21-139.us-east-2.compute.amazonaws.com:8090/instacart";
+    //baseUrl = "http://ec2-3-15-9-131.us-east-2.compute.amazonaws.com:8090/instacart";
     var endPoint = "/exec";
 
     var sqlQuery = document.getElementById("query-box").value;
@@ -36,7 +36,7 @@ class QueryBox extends React.Component {
 
     if(queryType === "select")
       endPoint += "Select";
-    else if(queryType === "update")
+    else if(queryType === "update" || queryType === "insert" || queryType === "delete")
       endPoint += "Update";
 
     var databaseChoices = document.getElementsByName("database");
@@ -169,7 +169,7 @@ class QueryBox extends React.Component {
                     <td><input type="radio" id="redshift" name="database" value="RedShift"/><label htmlFor="redshift">RedShift</label></td>
                   </tr>
                   <tr>
-                    <td colSpan={3}><textarea id="query-box" className="query-box"/></td>
+                    <td colSpan={3}><textarea placeholder="Select * from YourTable;" id="query-box" className="query-box"/></td>
                   </tr>
                   <tr>
                     <td><input className="submit" type="button" value="Fire" onClick={() => {this.handleSubmit();}}></input></td>
